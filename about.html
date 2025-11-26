@@ -122,6 +122,10 @@
             color: var(--primary);
         }
         
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -134,6 +138,10 @@
         }
         
         .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
             width: 100%;
         }
         
@@ -1463,8 +1471,13 @@
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
                     
+                    // Skip external links and empty hrefs
+                    if (!href || href.startsWith('http://') || href.startsWith('https://')) {
+                        return;
+                    }
+                    
                     // Handle anchor links (starting with #)
-                    if (href && href.startsWith('#')) {
+                    if (href.startsWith('#')) {
                         e.preventDefault();
                         const targetId = href.substring(1);
                         
@@ -1477,12 +1490,14 @@
                                 });
                             }
                         }
+                        return;
                     }
+                    
                     // Handle links with page#anchor format
-                    else if (href && href.includes('#')) {
+                    if (href.includes('#')) {
                         const [page, anchor] = href.split('#');
                         // If it's the same page, scroll to anchor
-                        if (page === currentPage || page === '' || page === 'index.htm' && (currentPage === 'index.htm' || currentPage === '')) {
+                        if (page === '' || page === currentPage || (page === 'index.htm' && (currentPage === 'index.htm' || currentPage === ''))) {
                             e.preventDefault();
                             if (anchor) {
                                 const target = document.getElementById(anchor);
@@ -1494,15 +1509,18 @@
                                 }
                             }
                         }
+                        return;
                     }
+                    
                     // Handle same page click - scroll to top
-                    else if (href && (href === '#' || href === currentPage || href === 'index.htm' && (currentPage === 'index.htm' || currentPage === ''))) {
+                    if (href === currentPage || (href === 'index.htm' && (currentPage === 'index.htm' || currentPage === ''))) {
                         e.preventDefault();
                         window.scrollTo({
                             top: 0,
                             behavior: 'smooth'
                         });
                     }
+                    // Allow navigation to different pages (about.html, product.html, etc.)
                 });
             });
         }
@@ -1531,7 +1549,7 @@
                 </a>
                 
                 <div class="nav-links">
-                    <a href="index.htm" class="nav-link">Home</a>
+                    <a href="index.htm" class="nav-link active">Home</a>
                     <a href="about.html" class="nav-link">About Us</a>
                     <a href="product.html" class="nav-link">Product</a>
                     <a href="#contact" class="nav-link">Contact</a>
@@ -1547,7 +1565,7 @@
             </div>
             
             <div id="mobile-menu" class="mobile-menu">
-                <a href="index.htm" class="nav-link">Home</a>
+                <a href="index.htm" class="nav-link active">Home</a>
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="product.html" class="nav-link">Product</a>
                 <a href="#contact" class="nav-link">Contact</a>
