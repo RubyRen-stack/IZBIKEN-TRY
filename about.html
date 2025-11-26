@@ -1167,16 +1167,53 @@
             }
         }
         
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchor links and scroll to top when clicking same page
         function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // Get current page name
+            const currentPage = window.location.pathname.split('/').pop() || 'index.htm';
+            
+            document.querySelectorAll('a').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
+                    const href = this.getAttribute('href');
+                    
+                    // Handle anchor links (starting with #)
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        
+                        if (targetId) {
+                            const target = document.getElementById(targetId);
+                            if (target) {
+                                target.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        }
+                    }
+                    // Handle links with page#anchor format
+                    else if (href && href.includes('#')) {
+                        const [page, anchor] = href.split('#');
+                        // If it's the same page, scroll to anchor
+                        if (page === currentPage || page === 'about.html' && currentPage.includes('about')) {
+                            e.preventDefault();
+                            if (anchor) {
+                                const target = document.getElementById(anchor);
+                                if (target) {
+                                    target.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    // Handle same page click - scroll to top
+                    else if (href && (href === currentPage || href === 'about.html' && currentPage.includes('about'))) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
                         });
                     }
                 });
@@ -1208,7 +1245,7 @@
                     <a href="index.htm" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link active">About Us</a>
                     <a href="product.html" class="nav-link">Product</a>
-                    <a href="index.htm#contact" class="nav-link">Contact</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
                 
                 <button id="mobile-menu-btn" class="mobile-menu-btn">
@@ -1224,7 +1261,7 @@
                 <a href="index.htm" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link active">About Us</a>
                 <a href="product.html" class="nav-link">Product</a>
-                <a href="index.htm#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
