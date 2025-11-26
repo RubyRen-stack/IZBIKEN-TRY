@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | IZBIKEN - MATAHARI ABADI</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="src/logo.png">
+    <link rel="shortcut icon" type="image/png" href="src/logo.png">
+    <link rel="apple-touch-icon" href="src/logo.png">
+    <meta name="description" content="Tentang PT. IZBIKEN MATAHARI ABADI - Visi, Misi, dan Specialist Kami">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: hsl(38, 100%, 50%);
+            --primary-foreground: hsl(0, 0%, 100%);
+            --background: hsl(0, 0%, 100%);
+            --foreground: hsl(0, 0%, 0%);
+            --card: hsl(0, 0%, 100%);
+            --card-foreground: hsl(0, 0%, 0%);
+            --border: hsl(0, 0%, 90%);
+            --muted-foreground: hsl(0, 0%, 45%);
+            --premium-black: hsl(0, 0%, 0%);
+            --premium-white: hsl(0, 0%, 100%);
+            --radius: 0.75rem;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
+        }
+        
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--premium-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .logo-link:hover {
+            color: var(--primary);
+        }
+        
+        .logo-img {
+            height: 48px;
+            width: auto;
+            max-height: 64px;
+            transition: transform 0.3s;
+            object-fit: contain;
+        }
+        
+        .logo-link:hover .logo-img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links {
+            display: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+        
+        .nav-link {
+            color: var(--premium-white);
+            text-decoration: none;
+            font-size: 1.125rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--premium-white);
+            cursor: pointer;
+            font-size: 1.75rem;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+        
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu .nav-link {
+            font-size: 1.125rem;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section {
+                min-height: 500px;
+            }
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('src/atas.jpeg');
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.05);
+            filter: brightness(0.7) contrast(1.2);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.45), rgba(0,0,0,0.55));
+        }
+        
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            opacity: 0.25;
+            background: radial-gradient(circle, hsla(38, 100%, 50%, 0.4), transparent 60%);
+            filter: blur(80px);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-glow {
+                width: 800px;
+                height: 800px;
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: fadeUp 0.8s ease-out;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 30px hsla(38, 100%, 50%, 0.5);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 7rem;
+            }
+        }
+        
+        .hero-line {
+            height: 4px;
+            width: 120px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            box-shadow: 0 0 40px hsla(38, 100%, 50%, 0.5);
+            margin: 0 auto 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--premium-white);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            opacity: 0.95;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-subtitle {
+                font-size: 1.875rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 2.25rem;
+                letter-spacing: 0.12em;
+            }
+        }
+        
+        /* Section */
+        .section {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title .primary {
+            color: var(--primary);
+        }
+
+        .about-description {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto 3.5rem;
+            padding: 2.5rem 3rem;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--foreground);
+            line-height: 1.9;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.12), rgba(255, 255, 255, 0.9));
+            box-shadow: 0 25px 60px -20px rgba(255, 140, 0, 0.35);
+            border: 1px solid rgba(255, 140, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .about-description::before,
+        .about-description::after {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border-radius: 1.1rem;
+            border: 1px dashed rgba(255, 140, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .about-description::after {
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(255, 140, 0, 0.15), transparent 60%);
+            opacity: 0.5;
+        }
+
+        .about-description strong {
+            color: var(--primary);
+        }
+        
+        /* Visi Misi Section */
+        .visi-misi-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 6rem;
+        }
+        
+        .visi-misi-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, hsla(38, 100%, 50%, 0.15), var(--background) 50%, hsla(38, 100%, 50%, 0.05));
+            border: 2px solid hsla(38, 100%, 50%, 0.3);
+            border-radius: var(--radius);
+            padding: 4rem;
+            box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 140, 0, 0.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeUp 0.8s ease-out;
+        }
+        
+        .visi-misi-card:nth-child(2) {
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        .visi-misi-card:hover {
+            box-shadow: 0 30px 80px -20px hsla(38, 100%, 50%, 0.4), 0 0 0 1px hsla(38, 100%, 50%, 0.3);
+            transform: translateY(-12px) scale(1.02);
+            border-color: hsla(38, 100%, 50%, 0.6);
+        }
+        
+        .visi-misi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), #fb923c, #fde047, var(--primary));
+            background-size: 200% 100%;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s;
+            animation: shimmer 3s infinite;
+        }
+        
+        .visi-misi-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        .visi-misi-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, hsla(38, 100%, 50%, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s;
+            pointer-events: none;
+        }
+        
+        .visi-misi-card:hover::after {
+            opacity: 1;
+        }
+        
+        .visi-misi-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), #fb923c, #fde047);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px hsla(38, 100%, 50%, 0.5), 0 0 20px hsla(38, 100%, 50%, 0.3);
+            transition: all 0.6s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .visi-misi-card:hover .visi-misi-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 15px 50px hsla(38, 100%, 50%, 0.7), 0 0 30px hsla(38, 100%, 50%, 0.5);
+        }
+        
+        .visi-misi-icon::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .visi-misi-icon svg {
+            width: 42px;
+            height: 42px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .visi-misi-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px hsla(38, 100%, 50%, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .visi-misi-card:hover .visi-misi-title {
+            transform: translateX(10px);
+            text-shadow: 0 4px 20px hsla(38, 100%, 50%, 0.4);
+        }
+        
+        .visi-misi-content {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.75;
+        }
+        
+        .visi-misi-content ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .visi-misi-content li {
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Specialist Section */
+        .specialist-section {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        .specialist-featured-card {
+            margin-bottom: 3rem;
+            animation: fadeUp 0.8s ease-out;
+        }
+        
+        .specialist-featured-card .specialist-card {
+            background: linear-gradient(135deg, hsla(38, 100%, 50%, 0.1), rgba(255, 255, 255, 0.95));
+            border: 2px solid hsla(38, 100%, 50%, 0.3);
+            padding: 3rem;
+        }
+        
+        .specialist-featured-card .specialist-card:hover {
+            box-shadow: 0 30px 80px -20px hsla(38, 100%, 50%, 0.5);
+            transform: translateY(-12px);
+        }
+        
+        .specialist-featured-card .specialist-card-icon-box {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), #fb923c);
+            box-shadow: 0 10px 40px hsla(38, 100%, 50%, 0.5);
+        }
+        
+        .specialist-featured-card .specialist-card-icon {
+            width: 56px;
+            height: 56px;
+            color: white;
+        }
+        
+        .specialist-featured-card .specialist-card-title {
+            font-size: 1.75rem;
+        }
+        
+        .specialist-featured-card .specialist-card-desc {
+            font-size: 1.125rem;
+        }
+        
+        .specialist-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .specialist-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .specialist-card {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        
+        .specialist-card:hover {
+            box-shadow: 0 0 40px hsla(38, 100%, 50%, 0.4);
+            transform: translateY(-8px);
+            border-color: hsla(38, 100%, 50%, 0.4);
+        }
+        
+        .specialist-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, hsla(38, 100%, 50%, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .specialist-card:hover::before {
+            opacity: 1;
+        }
+        
+        .specialist-card-content {
+            position: relative;
+            z-index: 10;
+            padding: 2.5rem;
+        }
+        
+        .specialist-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specialist-card-icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 1rem;
+            background: linear-gradient(to bottom right, hsla(38, 100%, 50%, 0.2), hsla(38, 100%, 50%, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.5s;
+        }
+        
+        .specialist-card:hover .specialist-card-icon-box {
+            box-shadow: 0 0 40px hsla(38, 100%, 50%, 0.5);
+        }
+        
+        .specialist-card-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--primary);
+            transition: transform 0.5s;
+        }
+        
+        .specialist-card:hover .specialist-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .specialist-card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
+            color: var(--foreground);
+        }
+        
+        .specialist-card:hover .specialist-card-title {
+            color: var(--primary);
+        }
+        
+        .specialist-card-desc {
+            color: var(--muted-foreground);
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+        
+        .specialist-card-desc strong {
+            color: var(--primary);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .specialist-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 0;
+            background: linear-gradient(to right, var(--primary), #fb923c);
+            transition: width 0.5s;
+        }
+        
+        .specialist-card:hover::after {
+            width: 100%;
+        }
+
+        /* Legal Section */
+        .legal-section {
+            background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.07));
+        }
+
+        .legal-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--premium-white);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 30px 80px -30px rgba(0,0,0,0.25);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .legal-headline {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-headline h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--foreground);
+        }
+
+        .legal-headline p {
+            color: var(--muted-foreground);
+        }
+
+        .legal-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .legal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .legal-card {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legal-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,140,0,0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .legal-label {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            position: relative;
+        }
+
+        .legal-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--foreground);
+            position: relative;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--premium-black);
+            color: var(--premium-white);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 80px;
+        }
+        
+        .contact-glow {
+            position: absolute;
+            width: 384px;
+            height: 384px;
+            border-radius: 50%;
+            background: hsla(38, 100%, 50%, 0.1);
+            filter: blur(120px);
+        }
+        
+        .contact-glow-1 {
+            top: 0;
+            left: 25%;
+        }
+        
+        .contact-glow-2 {
+            bottom: 0;
+            right: 25%;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 10;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+        
+        .contact-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeUp 0.8s ease-out;
+        }
+        
+        .contact-title h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-title .primary {
+            color: var(--primary);
+            text-shadow: 0 0 30px hsla(38, 100%, 50%, 0.5);
+        }
+        
+        .contact-title-line {
+            width: 96px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            margin: 0 auto;
+            box-shadow: 0 0 40px hsla(38, 100%, 50%, 0.5);
+        }
+        
+        .contact-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .contact-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid hsla(38, 100%, 50%, 0.2);
+            transition: all 0.5s;
+        }
+        
+        .contact-card:hover {
+            border-color: hsla(38, 100%, 50%, 0.4);
+            box-shadow: 0 0 20px hsla(38, 100%, 50%, 0.3);
+        }
+        
+        .contact-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .contact-card-title {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.75;
+        }
+        
+        .contact-detail-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid hsla(38, 100%, 50%, 0.2);
+            transition: all 0.5s;
+        }
+        
+        .contact-detail-card:hover {
+            border-color: hsla(38, 100%, 50%, 0.4);
+            box-shadow: 0 0 20px hsla(38, 100%, 50%, 0.3);
+        }
+        
+        .contact-detail-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .contact-detail-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .contact-detail-info h3 {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-detail-info p {
+            color: rgba(255, 255, 255, 0.9);
+            word-break: break-all;
+        }
+        
+        .contact-copy-btn {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: hsla(38, 100%, 50%, 0.1);
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        
+        .contact-copy-btn:hover {
+            background: hsla(38, 100%, 50%, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .contact-quote-card {
+            backdrop-filter: blur(10px);
+            background: linear-gradient(to right, hsla(38, 100%, 50%, 0.1), hsla(38, 100%, 50%, 0.05), hsla(38, 100%, 50%, 0.1));
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 1px solid hsla(38, 100%, 50%, 0.3);
+            box-shadow: 0 0 20px hsla(38, 100%, 50%, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .contact-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            line-height: 1.75;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: var(--premium-black);
+            color: var(--premium-white);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+        
+        .toast.show {
+            display: block;
+        }
+        
+        .toast.success {
+            border-left: 4px solid #22c55e;
+        }
+        
+        .toast.error {
+            border-left: 4px solid #ef4444;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            padding: 2rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .footer-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--premium-black);
+            letter-spacing: 0.05em;
+        }
+        
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            body {
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .hero-section {
+                min-height: 520px;
+            }
+
+            .hero-title {
+                font-size: 3.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+                letter-spacing: 0.05em;
+            }
+
+            .section {
+                padding: 3.5rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .about-description {
+                padding: 1.75rem;
+                font-size: 1rem;
+            }
+
+            .visi-misi-card {
+                padding: 2.5rem;
+            }
+
+            .specialist-featured-card .specialist-card,
+            .specialist-card-content {
+                padding: 1.75rem;
+            }
+
+            .specialist-grid,
+            .legal-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-wrapper {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+    
+    <script>
+        // Toast notification system
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    const icon = menuBtn.querySelector('.icon');
+                    if (icon) {
+                        if (mobileMenu.classList.contains('active')) {
+                            icon.innerHTML = '<path d="M18 6L6 18M6 6l12 12"/>';
+                        } else {
+                            icon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+                        }
+                    }
+                });
+            }
+        }
+
+        // Contact copy functionality
+        let copiedPhone = false;
+        let copiedEmail = false;
+        
+        function initContact() {
+            const phoneCopyBtn = document.getElementById('copy-phone');
+            const emailCopyBtn = document.getElementById('copy-email');
+            const phoneIcon = document.getElementById('phone-icon');
+            const emailIcon = document.getElementById('email-icon');
+            
+            const phoneNumber = "+62 21 1234 5678";
+            const email = "info@izbiken.co.id";
+            
+            async function copyToClipboard(text, type) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    if (type === 'phone') {
+                        copiedPhone = true;
+                        if (phoneIcon) {
+                            phoneIcon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                            phoneIcon.style.color = '#22c55e';
+                        }
+                        setTimeout(() => {
+                            copiedPhone = false;
+                            if (phoneIcon) {
+                                phoneIcon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+                                phoneIcon.style.color = '';
+                            }
+                        }, 2000);
+                        showToast("Nomor HP berhasil disalin!", "success");
+                    } else {
+                        copiedEmail = true;
+                        if (emailIcon) {
+                            emailIcon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                            emailIcon.style.color = '#22c55e';
+                        }
+                        setTimeout(() => {
+                            copiedEmail = false;
+                            if (emailIcon) {
+                                emailIcon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+                                emailIcon.style.color = '';
+                            }
+                        }, 2000);
+                        showToast("Email berhasil disalin!", "success");
+                    }
+                } catch (err) {
+                    showToast("Gagal menyalin ke clipboard", "error");
+                }
+            }
+            
+            if (phoneCopyBtn) {
+                phoneCopyBtn.addEventListener('click', () => copyToClipboard(phoneNumber, 'phone'));
+            }
+            
+            if (emailCopyBtn) {
+                emailCopyBtn.addEventListener('click', () => copyToClipboard(email, 'email'));
+            }
+        }
+        
+        // Smooth scroll for anchor links
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initMobileMenu();
+            initContact();
+            initSmoothScroll();
+        });
+    </script>
+</head>
+<body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.htm" class="logo-link">
+                    <img src="src/logo.png" alt="Izbiken Logo" class="logo-img">
+                    <span class="logo-text">IZBIKEN</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="index.htm" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link active">About Us</a>
+                    <a href="product.html" class="nav-link">Product</a>
+                    <a href="index.htm#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="mobile-menu">
+                <a href="index.htm" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About Us</a>
+                <a href="product.html" class="nav-link">Product</a>
+                <a href="index.htm#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-glow"></div>
+        
+        <div class="container hero-content">
+            <h1 class="hero-title">About Us</h1>
+            <div class="hero-line"></div>
+            <h2 class="hero-subtitle">PT. IZBIKEN MATAHARI ABADI</h2>
+        </div>
+    </section>
+    
+    <!-- About / Visi Misi Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <span class="primary">About</span> Us
+            </div>
+
+            <div class="about-description">
+                Our company is engaged in giving engine services especially for manufacturing.
+                We are also distributor of maintenances, repair and operational supplies for every aspect of your business.
+            </div>
+            
+            <div class="section-title" style="margin-bottom: 2rem;">
+                <span class="primary">Visi</span> & <span class="primary">Misi</span>
+            </div>
+
+            <div class="visi-misi-grid">
+                <div class="visi-misi-card">
+                    <div class="visi-misi-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h2 class="visi-misi-title">Visi</h2>
+                    <div class="visi-misi-content">
+                        <p>Menjadi perusahaan terdepan dalam bidang jasa perbaikan, perawatan, dan penyediaan suku cadang mesin industri yang terpercaya dan berkualitas tinggi di Indonesia, dengan komitmen untuk memberikan solusi terbaik bagi kebutuhan industri nasional.</p>
+                    </div>
+                </div>
+                
+                <div class="visi-misi-card">
+                    <div class="visi-misi-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h2 class="visi-misi-title">Misi</h2>
+                    <div class="visi-misi-content">
+                        <ul>
+                            <li>Menyediakan jasa perbaikan dan perawatan mesin industri dengan standar kualitas terbaik</li>
+                            <li>Menyediakan suku cadang dan peralatan industri yang berkualitas dan terpercaya</li>
+                            <li>Memberikan pelayanan yang profesional, tepat waktu, dan memuaskan pelanggan</li>
+                            <li>Mengembangkan teknologi dan inovasi dalam bidang perawatan mesin industri</li>
+                            <li>Membangun kemitraan yang saling menguntungkan dengan klien dan supplier</li>
+                            <li>Berkontribusi terhadap pengembangan industri nasional melalui layanan berkualitas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Specialist Section -->
+    <section class="section specialist-section">
+        <div class="container">
+            <div class="section-title">
+                <span class="primary">Specialist</span> Kami
+            </div>
+            
+            <div class="specialist-featured-card">
+                <div class="specialist-card">
+                    <div class="specialist-card-content">
+                        <div class="specialist-card-header">
+                            <div class="specialist-card-icon-box">
+                                <svg class="specialist-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="specialist-card-title">Perbaikan dan Perombakan Mesin</h3>
+                            </div>
+                        </div>
+                        <p class="specialist-card-desc">
+                            <strong>Repair and Overhaul</strong>
+                            Machine ex, Brother Machine, Machine Fanuc, Bending Machine, Robot Welding Daihen, Las Machine Panasonic, Bending Comco, Mitsubishi Motor, Production Motor, Washing Machine, Numbering Machine, Press Machine, Chiller, Conveyor-production and other production machine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="specialist-grid">
+                <div class="specialist-card">
+                    <div class="specialist-card-content">
+                        <div class="specialist-card-header">
+                            <div class="specialist-card-icon-box">
+                                <svg class="specialist-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="specialist-card-title">Suku Cadang dan Peralatan Kantor/Industri</h3>
+                            </div>
+                        </div>
+                        <p class="specialist-card-desc">
+                            <strong>Supply of Spare Parts and Equipment</strong>
+                            Office and industrial machinery, spare parts and equipment.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="specialist-card">
+                    <div class="specialist-card-content">
+                        <div class="specialist-card-header">
+                            <div class="specialist-card-icon-box">
+                                <svg class="specialist-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="specialist-card-title">Instalasi Peralatan dan Mesin Industri</h3>
+                            </div>
+                        </div>
+                        <p class="specialist-card-desc">
+                            <strong>Machinery and Equipment Installation</strong>
+                            Industrial machinery and equipment installation.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="specialist-card">
+                    <div class="specialist-card-content">
+                        <div class="specialist-card-header">
+                            <div class="specialist-card-icon-box">
+                                <svg class="specialist-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="specialist-card-title">Mesin dan Alat Industri untuk Pengerjaan Logam</h3>
+                            </div>
+                        </div>
+                        <p class="specialist-card-desc">
+                            <strong>Supply of Tools and Machinery</strong>
+                            Industrial machinery and machine tools for metal working.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section class="section legal-section">
+        <div class="container">
+            <div class="legal-wrapper">
+                <div class="legal-headline">
+                    <h2>Legalitas Perusahaan</h2>
+                    <p>Dokumen resmi yang menunjukkan legitimasi operasional PT. Izbiken Matahari Abadi.</p>
+                </div>
+
+                <div class="legal-grid">
+                    <div class="legal-card">
+                        <div class="legal-label">Nama Perusahaan</div>
+                        <div class="legal-value">PT. Izbiken Matahari Abadi</div>
+                    </div>
+                    <div class="legal-card">
+                        <div class="legal-label">Nomor Induk Berusaha (NIB)</div>
+                        <div class="legal-value">2107220067004</div>
+                    </div>
+                    <div class="legal-card">
+                        <div class="legal-label">SK KEMENKUMHAM</div>
+                        <div class="legal-value">AHU0048835.AH.01.01. TAHUN 2022</div>
+                    </div>
+                    <div class="legal-card">
+                        <div class="legal-label">NPWP PERUSAHAAN</div>
+                        <div class="legal-value">60.366.744.5-408.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-glow contact-glow-1"></div>
+        <div class="contact-glow contact-glow-2"></div>
+        
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-title">
+                    <h2>Contact <span class="primary">Us</span></h2>
+                    <div class="contact-title-line"></div>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <h3 class="contact-card-title">PT. Izbiken Matahari Abadi</h3>
+                                <p class="contact-card-text">
+                                    Jl. Industri Raya No. 123<br>
+                                    Kawasan Industri Jababeka<br>
+                                    Cikarang, Bekasi 17530<br>
+                                    Indonesia
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="contact-detail-card">
+                            <div class="contact-detail-content">
+                                <div class="contact-detail-left">
+                                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                    <div class="contact-detail-info">
+                                        <h3>Phone</h3>
+                                        <p>+62 21 1234 5678</p>
+                                    </div>
+                                </div>
+                                <button id="copy-phone" class="contact-copy-btn">
+                                    <svg id="phone-icon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail-card" style="margin-top: 1.5rem;">
+                            <div class="contact-detail-content">
+                                <div class="contact-detail-left">
+                                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                    <div class="contact-detail-info">
+                                        <h3>Email</h3>
+                                        <p>info@izbiken.co.id</p>
+                                    </div>
+                                </div>
+                                <button id="copy-email" class="contact-copy-btn">
+                                    <svg id="email-icon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-quote-card">
+                    <blockquote class="contact-quote">
+                        "Delivering the best engine performance with precision and quality."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 PT. Izbiken Matahari Abadi. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | IZBIKEN - MATAHARI ABADI</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="src/logo.png">
+    <link rel="shortcut icon" type="image/png" href="src/logo.png">
+    <link rel="apple-touch-icon" href="src/logo.png">
+    <meta name="description" content="Product showcase PT. Izbiken Matahari Abadi">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: hsl(38, 100%, 50%);
+            --primary-foreground: hsl(0, 0%, 100%);
+            --background: hsl(0, 0%, 100%);
+            --foreground: hsl(0, 0%, 5%);
+            --card: hsl(0, 0%, 100%);
+            --muted: hsl(0, 0%, 96%);
+            --muted-foreground: hsl(0, 0%, 40%);
+            --premium-black: hsl(0,0%,5%);
+            --radius: 1rem;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
+        }
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-foreground);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 48px;
+            max-height: 64px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .logo-link:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--primary-foreground);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            height: 2px;
+            width: 0;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--primary-foreground);
+            font-size: 1.75rem;
+            cursor: pointer;
+        }
+
+        @media (min-width:768px) {
+            .mobile-menu-btn { display: none; }
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        /* Hero */
+        .hero-section {
+            position: relative;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('src/atas.jpeg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            opacity: 0.25;
+            background: radial-gradient(circle, hsla(38, 100%, 50%, 0.4), transparent 60%);
+            filter: blur(80px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 30px hsla(38, 100%, 50%, 0.5);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 7rem;
+            }
+        }
+
+        .hero-line {
+            height: 4px;
+            width: 120px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            box-shadow: 0 0 40px hsla(38, 100%, 50%, 0.5);
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-foreground);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            opacity: 0.95;
+        }
+
+        @media (min-width: 640px) {
+            .hero-subtitle {
+                font-size: 1.875rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 2.25rem;
+                letter-spacing: 0.12em;
+            }
+        }
+
+        /* Section Generic */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-heading h2 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .section-heading p {
+            color: var(--muted-foreground);
+            margin-top: 0.75rem;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .section-heading h2 { font-size: 2.25rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1rem; letter-spacing: 0.05em; }
+        }
+
+        @media (min-width: 768px) {
+            .hero-glow {
+                width: 800px;
+                height: 800px;
+            }
+        }
+
+        .product-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -20px rgba(0,0,0,0.35);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-body {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--foreground);
+        }
+
+        .product-desc {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+    </style>
+
+    <script>
+        function initMobileMenu() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            if (!btn || !menu) return;
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('active');
+                const icon = btn.querySelector('.icon');
+                if (icon) {
+                    icon.innerHTML = menu.classList.contains('active')
+                        ? '<path d="M18 6L6 18M6 6l12 12"/>'
+                        : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.htm" class="logo-link">
+                    <img src="src/logo.png" alt="Izbiken Logo" class="logo-img">
+                    <span class="logo-text">IZBIKEN</span>
+                </a>
+
+                <div class="nav-links">
+                    <a href="index.htm" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="product.html" class="nav-link active">Product</a>
+                    <a href="index.htm#contact" class="nav-link">Contact</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="mobile-menu">
+                <a href="index.htm" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="product.html" class="nav-link active">Product</a>
+                <a href="index.htm#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-glow"></div>
+        <div class="container hero-content">
+            <h4 class="hero-title">Our Product</h4>
+            <div class="hero-line"></div>
+            <p class="hero-subtitle">Comprehensive solutions for industrial needs</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Product Portfolio</h2>
+                <p>We provide a range of machine maintenance products and production solutions that can be customized to meet your needs.</p>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="src/product-1.jpg" alt="Precision Machinery">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Precision Machinery</h3>
+                        <p class="product-desc">Precision machines for automotive and electronics production lines with high quality.</p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="src/product-2.jpg" alt="Industrial Spare Parts">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Industrial Spare Parts</h3>
+                        <p class="product-desc">Official replacement components for various types of industrial and manufacturing machines.</p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="src/product-3.jpg" alt="Automation Systems">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Automation Systems</h3>
+                        <p class="product-desc">Automation and robotics systems to improve production efficiency.</p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="src/product-4.jpg" alt="Maintenance Tools">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Maintenance Tools</h3>
+                        <p class="product-desc">Complete maintenance equipment with industrial safety standards.</p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="src/product-5.jpg" alt="Fabrication Services">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Fabrication Services</h3>
+                        <p class="product-desc">Fabrication and equipment modification services according to your production needs.</p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="src/product-6.jpg" alt="Cooling & Chiller Unit">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Cooling & Chiller Unit</h3>
+                        <p class="product-desc">Industrial cooling units to maintain machine operational stability.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
